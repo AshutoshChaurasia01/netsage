@@ -1,0 +1,333 @@
+Case_ID,AI_Diagnosis,Action,Corrected_Fault,Reason
+CASE_005,"{
+  ""root_cause"": ""Default gateway not configured on PC"",
+  ""confidence"": ""high"",
+  ""evidence"": ""ipconfig: IP 192.168.1.10, Mask 255.255.255.0, Gateway 0.0.0.0"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,Correct
+CASE_005,"{
+  ""root_cause"": ""Default gateway not configured on PC"",
+  ""confidence"": ""high"",
+  ""evidence"": ""ipconfig: IP 192.168.1.10, Mask 255.255.255.0, Gateway 0.0.0.0"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,Correct
+CASE_001,"{
+  ""root_cause"": ""Switch port assigned to wrong access VLAN"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show vlan brief: Gi0/1 in VLAN 1, Gi0/2 in VLAN 10"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_002,"{
+  ""root_cause"": ""VLAN not created in VLAN database"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show vlan brief: VLAN 30 not found in local VLAN database"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_003,"{
+  ""root_cause"": ""Native VLAN mismatch on trunk port"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show interfaces trunk: Gi0/1 trunking. SW1 native VLAN 1, SW2 native VLAN 99"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_004,"{
+  ""root_cause"": ""Trunk port not allowing VLAN 20"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show interfaces trunk: Port Gi0/1 allowed VLANs 1,10,30"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_005,"{
+  ""root_cause"": ""Default gateway not configured on PC"",
+  ""confidence"": ""high"",
+  ""evidence"": ""ipconfig: IP 192.168.1.10, Mask 255.255.255.0, Gateway 0.0.0.0"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_006,"{
+  ""root_cause"": ""DHCP request failed, PC falling back to APIPA"",
+  ""confidence"": ""high"",
+  ""evidence"": ""ipconfig: 169.254.10.5"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Rejected,fault corrected,it was incorrect
+CASE_006,"{
+  ""root_cause"": ""DHCP request failed, PC falling back to APIPA"",
+  ""confidence"": ""high"",
+  ""evidence"": ""ipconfig: 169.254.10.5"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_007,"{
+  ""root_cause"": ""Missing default gateway on PC"",
+  ""confidence"": ""high""
+}",Accepted,,
+CASE_008,"{
+  ""root_cause"": ""Missing static or dynamic route to destination network"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show ip route on R1: 192.168.1.0/24 directly connected. No route to 10.0.0.0"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_009,"{
+  ""root_cause"": ""OSPF area mismatch between routers"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show ip ospf neighbor: empty. show run: R1 area 0, R2 area 1"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_010,"{
+  ""root_cause"": ""Missing ip helper-address on router subinterface"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show ip interface gi0/0.10 on R1: no ip helper-address"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_011,"{
+  ""root_cause"": ""DNS server unreachable or misconfigured on PC"",
+  ""confidence"": ""high"",
+  ""evidence"": ""nslookup google.com: Server UnKnown, timeout"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_012,"{
+  ""root_cause"": ""DHCP pool configured with wrong default-router IP"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show run | sec dhcp: network 192.168.1.0, default-router 192.168.2.1"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_013,"{
+  ""root_cause"": ""ACL explicitly blocking HTTP traffic"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show access-lists: 10 deny tcp any any eq www"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_014,"{
+  ""root_cause"": ""ACL blocking specific port (SSH)"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show ip interface gi0/1: Inbound access list is ACL_IN. ACL_IN denies tcp eq 22"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_015,"{
+  ""root_cause"": ""NAT outside interface not configured"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show run | sec nat: ip nat inside source list 1 pool MYPool. show ip int gi0/1: no ip nat outside"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_016,"{
+  ""root_cause"": ""Guest Wi-Fi password mismatch"",
+  ""confidence"": ""medium""
+}",Accepted,,
+CASE_017,"{
+  ""root_cause"": ""WPA2 Pre-shared key mismatch"",
+  ""confidence"": ""high"",
+  ""evidence"": ""Wireless client logs: Authentication failed. show run on AP: ssid Corp-Net wpa-psk ascii Mypassw0rd"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_018,"{
+  ""root_cause"": ""Duplicate IP address assignment on network"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show ip arp: 192.168.1.10 maps to MACs AA-BB and CC-DD"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_019,"{
+  ""root_cause"": ""Port security violation err-disabled the interface"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show interfaces Gi1/0/1: status down, protocol down (err-disable). show run: port-security"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_020,"{
+  ""root_cause"": ""Physical layer cabling issue or duplex mismatch"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show interfaces Gi0/1: 500 input errors, 100 CRC errors"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_021,"{
+  ""root_cause"": ""ACL blocking source subnet from exiting network"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show ip access-lists: 10 deny ip 192.168.1.0 0.0.0.255 any"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_022,"{
+  ""root_cause"": ""Switch Virtual Interface (SVI) for VLAN 20 is shut down"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show ip route: C 10.0.0.0, C 20.0.0.0. show ip int brief: Vlan20 admin down"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_023,"{
+  ""root_cause"": ""ACL denying VPN pool IPs from accessing internal subnets"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show ip route: 10.0.0.0/24 via ASA. show access-lists: deny ip 192.168.50.0 0.0.0.255 10.0.0.0"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_024,"{
+  ""root_cause"": ""Static NAT IP mapping is incorrect"",
+  ""confidence"": ""high""
+}",Accepted,,
+CASE_025,"{
+  ""root_cause"": ""EtherChannel PAgP/LACP mode mismatch"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show etherchannel summary: Gi0/1-4 (I) (standalone). SW1 mode on, SW2 mode active"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_026,"{
+  ""root_cause"": ""Port-security violation triggered by MAC limit"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show interfaces gi0/10: status err-disabled. show run int gi0/10: port-security maximum 1"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_027,"{
+  ""root_cause"": ""OSPF area mismatch"",
+  ""confidence"": ""high""
+}",Accepted,,
+CASE_028,"{
+  ""root_cause"": ""DHCP pool configured with incorrect network statement"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show ip dhcp pool: network 10.10.20.0 255.255.255.0"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_029,"{
+  ""root_cause"": ""DNS server lacks the required zone or forwarder for the internal domain"",
+  ""confidence"": ""high"",
+  ""evidence"": ""show run: ip name-server 8.8.8.8. nslookup internal.corp: fails"",
+  ""next_command"": ""show running-config"",
+  ""fix_steps"": [
+    ""configure terminal"",
+    ""apply correct config"",
+    ""end""
+  ]
+}",Accepted,,
+CASE_030,"{
+  ""root_cause"": ""NTP server is offline"",
+  ""confidence"": ""medium""
+}",Accepted,,
+CASE_030,"{
+  ""root_cause"": ""NTP server is offline"",
+  ""confidence"": ""medium""
+}",Accepted,,
