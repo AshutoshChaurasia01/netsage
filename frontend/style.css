@@ -1,0 +1,131 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.header {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start; 
+}
+
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+}
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    width: 100%; 
+}
+
+.hidden {
+    display: none;
+}
+
+.fault-text {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+select, button, input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+.btn-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-accept {
+    background-color: #2ecc71;
+}
+.btn-accept:hover {
+    background-color: #27ae60;
+}
+
+.btn-edit {
+    background-color: #f39c12;
+}
+.btn-edit:hover {
+    background-color: #e67e22;
+}
+
+.btn-reject {
+    background-color: #e74c3c;
+}
+.btn-reject:hover {
+    background-color: #c0392b;
+}
+h3, h4 {
+    color: #34495e;
+    margin-top: 0;
+}
+
+pre {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.finding {
+    background: #fff3cd;
+    padding: 8px;
+    margin: 5px 0;
+    border-left: 4px solid #ffc107;
+    font-size: 14px;
+    border-radius: 4px;
+}

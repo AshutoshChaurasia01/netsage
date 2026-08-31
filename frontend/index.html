@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetSage AI - Troubleshooting Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>NetSage AI Dashboard</h1>
+        <p>Select a case to run deterministic checks, generate AI diagnosis, and perform human review.</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="left-column">
+            <div class="card">
+                <h3>1. Select Case</h3>
+                <select id="caseSelector" onchange="loadCase()"></select>
+            </div>
+            <div class="card">
+                <h3>Case Details</h3>
+                <p><strong>Symptom:</strong> <span id="caseSymptom"></span></p>
+                <p><strong>Topology:</strong> <span id="caseTopology"></span></p>
+                <p><strong>Expected Fault (Hidden during test):</strong> <span id="caseExpected" class="fault-text"></span></p>
+            </div>
+            <div class="card">
+                <h3>2. Run AI Workflow</h3>
+                <button onclick="runDiagnosis()">Diagnose Case</button>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <div class="card hidden" id="outputArea">
+                <h3>System Output</h3>
+                
+                <h4>Deterministic Rule Checks:</h4>
+                <div id="ruleOutput"></div>
+                
+                <h4>AI Diagnosis:</h4>
+                <pre id="aiOutput"></pre>
+            </div>
+
+            <div class="card hidden" id="reviewArea">
+                <h3>3. Human Review (Responsible AI)</h3>
+                <p>Do you accept this AI diagnosis?</p>
+                <input type="text" id="correctedFault" placeholder="Corrected fault (if rejected/edited)">
+                <textarea id="reviewReason" placeholder="Reason for correction / acceptance notes" rows="3"></textarea>
+                <div class="btn-group">
+                    <button class="btn-accept" onclick="submitReview('Accepted')">Accept</button>
+                    <button class="btn-edit" onclick="submitReview('Edited')">Edit</button>
+                    <button class="btn-reject" onclick="submitReview('Rejected')">Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const API_URL = "http://localhost:8000/api";
+
+    fetch(`${API_URL}/cases`)
+        .then(res => res.json())
+        .then(data => {
+            const selector = document.getElementById('caseSelector');
+            data.forEach(c => {
+                let opt = document.createElement('option');
+                opt.value = c.Case_ID;
+                opt.text = `${c.Case_ID} - ${c.Concept_Tag} (${c.Severity})`;
+                selector.appendChild(opt);
+            });
+        });
+
+    function loadCase() {
+        fetch(`${API_URL}/cases`)
+            .then(res => res.json())
+            .then(data => {
+                let id = document.getElementById('caseSelector').value;
+                let caseData = data.find(c => c.Case_ID === id);
+                
+                document.getElementById('caseSymptom').innerText = caseData.Symptom;
+                document.getElementById('caseTopology').innerText = caseData.Topology_Note;
+                document.getElementById('caseExpected').innerText = caseData.Expected_Fault;
+                
+                document.getElementById('outputArea').classList.add('hidden');
+                document.getElementById('reviewArea').classList.add('hidden');
+            });
+    }
+
+    function runDiagnosis() {
+        let caseId = document.getElementById('caseSelector').value;
+        
+        fetch(`${API_URL}/diagnose/${caseId}`, { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                // Show Output Area
+                document.getElementById('outputArea').classList.remove('hidden');
+                document.getElementById('reviewArea').classList.remove('hidden');
+
+                // Populate Rule Checks
+                let ruleHtml = data.rule_checker_findings.map(r => `<div class="finding">${r}</div>`).join('');
+                document.getElementById('ruleOutput').innerHTML = ruleHtml;
+
+                // Populate AI Output
+                document.getElementById('aiOutput').textContent = JSON.stringify(data.ai_response, null, 2);
+            });
+    }
+
+    function submitReview(action) {
+        let caseId = document.getElementById('caseSelector').value;
+        let aiOutput = document.getElementById('aiOutput').textContent;
+        let corrected = document.getElementById('correctedFault').value;
+        let reason = document.getElementById('reviewReason').value;
+
+        fetch(`${API_URL}/review`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                case_id: caseId,
+                ai_diagnosis: aiOutput,
+                action: action,
+                corrected_fault: corrected,
+                reason: reason
+            })
+        }).then(res => res.json())
+          .then(data => alert("Review logged successfully!"));
+    }
+</script>
+
+</body>
+</html>
